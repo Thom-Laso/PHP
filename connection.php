@@ -1,5 +1,5 @@
 <?php
-    $dbcon= new mysqli("localhost","root", "","Book");
+    $dbcon= new mysqli("localhost","root", "","book_database");
     if(!$dbcon)
         echo "not Connected";
     else
