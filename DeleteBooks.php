@@ -43,20 +43,21 @@
                     }
 
             //Delete Book
-                    if(isset($_POST["bksubmit"])){
+                    if(isset($_POST['bksubmit'])){
                         $bkId=$_POST["txtbxBook_Id"];
                         $sqlbk="delete from book_details where Book_Id=$bkId";
 
-                        if(mysqli_query($dbcon, $sqlbk)){
+                        if(mysqli_query($dbcon,$sqlbk))
+                        {
                             echo "Book deleted successfully";
-                        }else
-                            echo "Cannot Delete Book";
-                        
+                        }
+                        else
+                            echo "Cannot Delete Book";    
                     }
             //Delete Author
-                    if(isset($_POST["Asubmit"])){
-                        $A_Email=$_POST["txtbxAuthor_Email"];
-                        $sqlA="delete from book_author where Author_Email=$A_Email";
+                    if(isset($_POST['Asubmit'])){
+                        $A_Email=$_POST["txtbxAuthor_Email"];//the text that I enter must always be numbers, if it is a string or character it will not work
+                        $sqlA="delete from book_author where Author_Contact=$A_Email";
 
                         if(mysqli_query($dbcon, $sqlA)){
                             echo "Author deleted successfully";
@@ -69,7 +70,7 @@
             <form method="post">
                 <table>
                     <tr>
-                        <td>Book ID:</td><td><input type="text" name="txtbxBook_Id" value=""></td>
+                        <td>Book ID:</td><td><input type="text" name="txtbxBook_Id" id="txtbxBook_Id" placeholder="Enter book id"value=""></td>
                     </tr>
                     <tr>
                         <th colspan=2><input type="submit" name="bksubmit" value="DELETE"></th>
