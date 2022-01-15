@@ -1,6 +1,12 @@
 <?php
     include("connection.php");
 ?>
+
+<?php
+    session_start();
+    if (!isset($_SESSION['txtbxUsername']))
+    header('Location: login_details.php');
+?>
 <html>
     <head>
         <title>Insert Books</title>
@@ -18,9 +24,10 @@
                 $A_Address=$_POST["Author_Address"];
                 $A_Contact=$_POST["Author_Contact"];
                 $A_Email=$_POST["Author_Email"];
+                $A_Id=$_POST["AuthorId"];
 
                 $sqlbk="insert into book_details values('$bkName','$bkAuthor',$bkYear,'$bkId')";
-                $sqlA="insert into book_author values('$A_Name','$A_Address','$A_Contact','$A_Email')";
+                $sqlA="insert into book_author values('$A_Name','$A_Address','$A_Contact','$A_Email','$A_Id')";
                 if(mysqli_query($dbcon, $sqlbk)){
                     echo "Books Inserted Successfully <br>";
                 }else
@@ -67,6 +74,10 @@
                 <tr>
                     <td><h1><b>Email Address:</b></h1></td>
                     <td><input type="text" name="Author_Email"></td>
+                </tr>
+                <tr>
+                    <td><h1><b>Author Id:</b></h1></td>
+                    <td><input type="text" name="AuthorId"></td>
                 </tr>
             </table>
             <button name="submit" id="btnInsert">INSERT</button>

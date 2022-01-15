@@ -1,5 +1,5 @@
 <?php
-    //session_start();
+    session_start();
 ?>
 
 <html>
@@ -44,7 +44,8 @@
     if(isset($_POST['login'])){
         $username=$_POST["txtbxUsername"];
         $password=$_POST["txtbxPassword"];
-        //$_SESSION['txtbxUsername']=$username;
+        $_SESSION['txtbxUsername']=$username;
+
         $sql="select * from login_details where Username='$username' and Password='$password'";
 
         $result=mysqli_query($dbcon,$sql);

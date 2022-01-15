@@ -1,8 +1,7 @@
 <?php
-   /* session_start();
-    if (!isset($_SESSION['Username']))
+    session_start();
+    if (!isset($_SESSION['txtbxUsername']))
     header('Location: login_details.php');
-   */
 ?>
 <html>
     <head>
@@ -18,7 +17,9 @@
                         <tr>
                             <td><a href="DisplayBooks.php">Display</a></td>
                         </tr>
-
+                        <tr>
+                            <td><a href="EditBooks.php">Update</a></td>
+                        </tr>
                         <tr>
                             <td><a href="DeleteBooks.php">Delete</a></td>
                         </tr>

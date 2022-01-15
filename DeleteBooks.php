@@ -1,6 +1,11 @@
 <?php
     include("connection.php");
 ?>
+<?php
+    session_start();
+    if (!isset($_SESSION['txtbxUsername']))
+    header('Location: login_details.php');
+?>
 
 <html>
     <head>
@@ -28,13 +33,14 @@
             //Display Author
                     $sql="select * from book_author";
                     $result=$dbcon -> query($sql);
-                    echo "<table border=2><tr><td>Author Name</td><td>Address</td><td>Contact Number</td><td>Email Id</td></tr>";
+                    echo "<table border=2><tr><td>Author Name</td><td>Address</td><td>Contact Number</td><td>Email Id</td><td>Author Id</td></tr>";
                     if($result -> num_rows>0){
                         while($row=$result->fetch_assoc()){
                             echo "<td>".$row["Author_Name"]."</td>";
                             echo "<td>".$row["Author_Address"]."</td>";
                             echo "<td>".$row["Author_Contact"]."</td>";
-                            echo "<td>".$row["Author_Email"]."</td></tr>";
+                            echo "<td>".$row["Author_Email"]."</td>";
+                            echo "<td>".$row["AuthorId"]."</td></tr>";
                         }
                         echo"</table><br>";
                     }
@@ -56,8 +62,8 @@
                     }
             //Delete Author
                     if(isset($_POST['Asubmit'])){
-                        $A_Email=$_POST["txtbxAuthor_Email"];//the text that I enter must always be numbers, if it is a string or character it will not work
-                        $sqlA="delete from book_author where Author_Contact=$A_Email";
+                        $A_Id=$_POST["txtbxAuthorId"];//the text that I enter must always be numbers, if it is a string or character it will not work
+                        $sqlA="delete from book_author where AuthorId=$A_Id";
 
                         if(mysqli_query($dbcon, $sqlA)){
                             echo "Author deleted successfully";
@@ -75,9 +81,8 @@
                     <tr>
                         <th colspan=2><input type="submit" name="bksubmit" value="DELETE"></th>
                     </tr>
-
                     <tr>
-                        <td>Author Email:</td><td><input type="text" name="txtbxAuthor_Email" value=""></td>
+                        <td>Author Id:</td><td><input type="text" name="txtbxAuthorId" value=""></td>
                     </tr>
                     <tr>
                         <th colspan=2><input type="submit" name="Asubmit" value="DELETE"></th>

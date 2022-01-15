@@ -1,5 +1,5 @@
 <?php
-    include("connection.php");
+    require "connection.php";
 ?>
 <html>
     <head>

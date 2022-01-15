@@ -1,6 +1,11 @@
 <?php
     include("connection.php");
 ?>
+<?php
+    session_start();
+    if (!isset($_SESSION['txtbxUsername']))
+    header('Location: login_details.php');
+?>
 
 <html>
     <head>
@@ -31,13 +36,15 @@
                 if(isset($_POST["submit"])){
                     $sql="select * from book_author";
                     $result=$dbcon -> query($sql);
-                    echo "<table border=2><tr><td>Author Name</td><td>Address</td><td>Contact Number</td><td>Email Id</td></tr>";
+                    echo "<table border=2><tr><td>Author Name</td><td>Address</td><td>Contact Number</td><td>Email Id</td><td>Author Id</td></tr>";
                     if($result -> num_rows>0){
                         while($row=$result->fetch_assoc()){
                             echo "<td>".$row["Author_Name"]."</td>";
                             echo "<td>".$row["Author_Address"]."</td>";
                             echo "<td>".$row["Author_Contact"]."</td>";
-                            echo "<td>".$row["Author_Email"]."</td></tr>";
+                            echo "<td>".$row["Author_Email"]."</td>";
+                            echo "<td>".$row["AuthorId"]."</td></tr>";
+
                         }
                         echo"</table><br>";
                     }
